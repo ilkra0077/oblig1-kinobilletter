@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinobillett Booking</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+</head>
+<body>
+
+<div class="booking-container">
+
+    <h1>Bestilling av Kinobilletter</h1>
+
+    <div class="form-group">
+        <label for="film">Velg film her:</label>
+        <select id="film">
+            <option value="film1">Velg film</option>
+            <option value="Black Widow">Black Widow</option>
+            <option value="Scarlet Witch">Scarlet Witch</option>
+            <option value="Avengers: Endgame">Avengers: Endgame</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="antall">Antall:</label>
+        <input type="number" id="antall" min="1">
+    </div>
+
+    <div class="form-group">
+        <label for="fornavn">Fornavn:</label>
+        <input type="text" id="fornavn">
+    </div>
+
+    <div class="form-group">
+        <label for="etternavn">Etternavn:</label>
+        <input type="text" id="etternavn">
+    </div>
+
+    <div class="form-group">
+        <label for="telefonnr">Telefonnr:</label>
+        <input type="text" id="telefonnr">
+    </div>
+
+    <div class="form-group">
+        <label for="epost">Epost:</label>
+        <input type="text" id="epost">
+    </div>
+
+    <button onclick="kjopBillett()">Kjøp billett</button>
+
+    <div id="feilmeldinger" style="color: red;"></div>
+
+    <h2>Alle billetter</h2>
+    <ul id="billettListe">
+        <!-- Billettene vil bli lagt til her dynamisk via JavaScript -->
+    </ul>
+
+    <button onclick="slettAlleBilletter()">Slett alle billettene</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
