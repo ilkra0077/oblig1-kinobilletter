@@ -106,3 +106,4 @@ function slettAlleBilletter() {
     // Oppdater visningen av alle billetter
     visAlleBilletter();
 }
+
