@@ -1,109 +1,69 @@
-// Array for å lagre billettobjekter
-let billettListe = [];
+const billettRegister = [];
 
-function kjopBillett() {
-    // Nullstill tidligere feilmeldinger
-    nullstillFeilmeldinger();
-
-    // Hent verdier fra input-feltene
-    const valgtFilm = document.getElementById('film').value;
-    const antallBilletter = document.getElementById('antall').value;
-    const fornavn = document.getElementById('fornavn').value;
-    const etternavn = document.getElementById('etternavn').value;
-    const telefonnr = document.getElementById('telefonnr').value;
-    const epost = document.getElementById('epost').value;
-
-    let feilmelding = '';
-
-    if (!valgtFilm) {
-        feilmelding += 'Må velge en film. ';
+function visBillettRegister() {
+    // skriv ut
+    let ut = "<table><tr>" +
+        "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>Email</th>" +
+        "</tr>";
+    for (let p of billettRegister) {
+        ut += "<tr>";
+        ut += "<td>" + p.film + "</td><td>" + p.antall + "</td><td>" + p.fornavn + "</td><td>" + p.etternavn + "</td><td>" + p.telefonnr + "</td><td>" + p.email + "</td>";
+        ut += "</tr>";
     }
+    $("#billettRegister").html(ut);
+}
 
-    if (!antallBilletter) {
-        feilmelding += 'Må skrive inn antall billetter. ';
-    }
+function kjøpBilletter() {
+    // Clear all existing error messages
+    $('span.error-message').remove();
 
-    if (!fornavn) {
-        feilmelding += 'Må skrive inn fornavn. ';
-    }
+    const film = $("#film").val();
+    const antall = $("#antall").val();
+    const fornavn = $("#fornavn").val();
+    const etternavn = $("#etternavn").val();
+    const telefonnr = $("#telefonnr").val();
+    const email = $("#email").val();
 
-    if (!etternavn) {
-        feilmelding += 'Må skrive inn etternavn. ';
-    }
-
-    if (!telefonnr) {
-        feilmelding += 'Må skrive inn telefonnummer. ';
-    }
-
-    if (!epost) {
-        feilmelding += 'Må skrive inn e-postadresse. ';
-    }
-
-    // Vis feilmeldinger hvis det er noen
-    if (feilmelding) {
-        visFeilmeldinger(feilmelding);
+    if (film === '' || antall === '' || fornavn === '' || etternavn === '' || telefonnr === '' || email === '') {
+        const errorMelding = '<span class="error-message" style="color: red;"> This field is required.</span>';
+        if (film === '') {
+            $('#film').after(errorMelding);
+        }
+        if (antall === '') {
+            $('#antall').after(errorMelding)
+        }
+        if (fornavn === '') {
+            $('#fornavn').after(errorMelding)
+        }
+        if (etternavn === '') {
+            $('#etternavn').after(errorMelding)
+        }
+        if (telefonnr === '') {
+            $('#telefonnr').after(errorMelding)
+        }
+        if (email === '') {
+            $('#email').after(errorMelding)
+        }
     } else {
-        // Opprett billettobjekt
         const billett = {
-            film: valgtFilm,
-            antall: antallBilletter,
+            film: film,
+            antall: antall,
             fornavn: fornavn,
             etternavn: etternavn,
             telefonnr: telefonnr,
-            epost: epost
+            email: email
         };
+        billettRegister.push(billett);
 
-        // Legg til billettobjekt i lista
-        billettListe.push(billett);
-
-        // Oppdater visningen av alle billetter
-        visAlleBilletter();
-
-        // Tøm input-feltene
-        nullstillInputFelter();
+        // nullstill inputboksene
+        $('input').val('');
+        visBillettRegister();
     }
 }
 
-function visFeilmeldinger(melding) {
-    // Vis feilmeldinger ved å oppdatere HTML-elementet for feilmeldinger
-    const feilmeldingElement = document.getElementById('feilmeldinger');
-    feilmeldingElement.textContent = melding;
-}
-
-function nullstillFeilmeldinger() {
-    // Nullstill tidligere feilmeldinger ved å tømme innholdet
-    const feilmeldingElement = document.getElementById('feilmeldinger');
-    feilmeldingElement.textContent = '';
-}
-
-function nullstillInputFelter() {
-    // Tøm input-feltene
-    document.getElementById('film').value = '';
-    document.getElementById('antall').value = '';
-    document.getElementById('fornavn').value = '';
-    document.getElementById('etternavn').value = '';
-    document.getElementById('telefonnr').value = '';
-    document.getElementById('epost').value = '';
-}
-
-function visAlleBilletter() {
-    const billettListeElement = document.getElementById('billettListe');
-    billettListeElement.innerHTML = '';
-
-    // Loop gjennom billettListe og legg til hvert billettobjekt i listen
-    billettListe.forEach(function (billett) {
-        const billettElement = document.createElement('li');
-        billettElement.textContent = `Film: ${billett.film}, Antall billetter: ${billett.antall}`;
-        billettListeElement.appendChild(billettElement);
-    });
-}
-
-
-function slettAlleBilletter() {
-    // Tøm billettListe
-    billettListe = [];
-
-    // Oppdater visningen av alle billetter
-    visAlleBilletter();
+// slett billetter function should be outside the kjøpBilletter function
+function slettBilletter() {
+    billettRegister.length = 0;
+    visBillettRegister();
 }
 
