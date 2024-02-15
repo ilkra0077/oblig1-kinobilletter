@@ -13,8 +13,18 @@ function visBillettRegister() {
     $("#billettRegister").html(ut);
 }
 
+function validerEmail(email) {
+    // sjekker om email har @
+    return email.includes('@');
+}
+
+function validerTelefonnr(telefonnr) {
+    // sjekker om nummer har bare nummer, og 8 tegn
+    return /^\d{8}$/.test(telefonnr);
+}
+
 function kjopBilletter() {
-    // fjerne error meldinger
+    // Fjerner error meldinger før neste kjøp av billett
     $('span.error-message').remove();
 
     const film = $("#film").val();
@@ -25,7 +35,7 @@ function kjopBilletter() {
     const email = $("#email").val();
 
     if (film === '' || antall === '' || fornavn === '' || etternavn === '' || telefonnr === '' || email === '') {
-        const errorMelding = '<span class="error-message" style="color: red;"> This field is required.</span>';
+        const errorMelding = '<span class="error-message" style="color: red;">Du må fylle inn felt</span>';
         if (film === '') {
             $('#film').after(errorMelding);
         }
@@ -40,9 +50,13 @@ function kjopBilletter() {
         }
         if (telefonnr === '') {
             $('#telefonnr').after(errorMelding)
+        } else if (!validerTelefonnr(telefonnr)) {
+            $('#telefonnr').after('<span class="error-message" style="color: red;"> Putt inn et korrekt nummer</span>');
         }
         if (email === '') {
             $('#email').after(errorMelding)
+        } else if (!validerEmail(email)) {
+            $('#email').after('<span class="error-message" style="color: red;">Putt inn korrekt email</span>');
         }
     } else {
         const billett = {
@@ -55,15 +69,16 @@ function kjopBilletter() {
         };
         billettRegister.push(billett);
 
-        // nullstill inputboksene
+        // Nullstill inputboksene
         $('input').val('');
         visBillettRegister();
     }
 }
 
-// slett billetter
+// Sletter billettene
 function slettBilletter() {
     billettRegister.length = 0;
     visBillettRegister();
 }
+
 
