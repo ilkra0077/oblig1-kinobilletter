@@ -25,3 +25,4 @@ Dette prosjektet er en enkel JavaScript-applikasjon for å registrere kjøp av k
 
 - HTML
 - JavaScript
+- JQuery

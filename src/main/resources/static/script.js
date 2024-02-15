@@ -13,8 +13,8 @@ function visBillettRegister() {
     $("#billettRegister").html(ut);
 }
 
-function kjøpBilletter() {
-    // Clear all existing error messages
+function kjopBilletter() {
+    // fjerne error meldinger
     $('span.error-message').remove();
 
     const film = $("#film").val();
@@ -61,7 +61,7 @@ function kjøpBilletter() {
     }
 }
 
-// slett billetter function should be outside the kjøpBilletter function
+// slett billetter
 function slettBilletter() {
     billettRegister.length = 0;
     visBillettRegister();
