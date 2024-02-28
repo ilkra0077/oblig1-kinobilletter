@@ -18,6 +18,8 @@ function visBillettRegister() {
 function kjopBilletter() {
     // Fjerner error-meldinger før neste kjøp av billett
     $('span.error-message').remove();
+    $('span.error-message-email').remove();
+    $('span.error-message-tlf').remove();
     $("#error-container").html("");
 
     const film = $("#film").val();
@@ -34,7 +36,9 @@ function kjopBilletter() {
     const erTelefonnrValid = telefonnrValidering.test(telefonnr);
 
     if (film === '' || antall === '' || fornavn === '' || etternavn === '' || telefonnr === '' || !erTelefonnrValid || email === '' || !erEmailValid) {
-        const errorMelding = '<span class="error-message" style="color:red;">Ugyldig. Fyll inn riktig data.</span>';
+        const errorMelding = '<span class="error-message" style="color:red;">Ugyldig, fyll inn felt.</span>';
+        const errorMeldingEmail = '<span class="error-message-email" style="color:red;">Ugyldig email. </span>';
+        const errorMeldingTlf = '<span class="error-message-tlf" style="color:red;">Ugyldig telefonnr. </span>';
         if (film === '') {
             $('#film').after(errorMelding);
         }
@@ -48,10 +52,10 @@ function kjopBilletter() {
             $('#etternavn').after(errorMelding);
         }
         if (telefonnr === '' ||!erTelefonnrValid) {
-            $('#telefonnr').after(errorMelding);
+            $('#telefonnr').after(errorMeldingTlf);
         }
         if (email === '' || !erEmailValid) {
-            $('#email').after(errorMelding);
+            $('#email').after(errorMeldingEmail);
         }
     } else {
         const billett = {
