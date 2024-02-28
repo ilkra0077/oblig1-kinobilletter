@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+
 <html lang="no">
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
     <script src="script.js"></script>
     <title>Kinobilletter</title>
 </head>
 <body>
 <h1>Bestilling av kinobilletter</h1>
 
-<p>Velg film:<select id="film" onchange="velg();">
-    <option> Velg film her</option>
-    <option>Black Widow </option>
-    <option>Avengers Endgame</option>
-    <option>Scarlet Witch</option>
-</select>
+<p>Velg film:
+    <select id="film" onchange="velg();">
+        <option>Velg film her</option>
+        <option>Black Widow</option>
+        <option>Avengers Endgame</option>
+        <option>Scarlet Witch</option>
+    </select>
 </p>
 
 <p>Antall <input type="number" id="antall" min="1"></p>
@@ -24,7 +24,7 @@
     <tr><td>Fornavn</td><td><input type="text" id="fornavn"/></td></tr>
     <tr><td>Etternavn</td><td><input type="text" id="etternavn"/></td></tr>
     <tr><td>Telefonnr</td><td><input type="tel" id="telefonnr"/></td></tr>
-    <tr><td>Email</td><td><input type="email" id="email"/></td></tr>
+    <tr><td>Email</td><td><input type="email" id="email" autocomplete="email"/></td></tr>
     <tr><td><button onclick="kjopBilletter()">Kjøp billetter</button></td></tr>
 </table>
 
@@ -32,6 +32,5 @@
 
 <button onclick="slettBilletter()">Slett alle billettene</button>
 <div id="billettRegister"></div>
-
 </body>
 </html>
