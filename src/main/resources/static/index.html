@@ -3,34 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="script.js"></script>
     <title>Kinobilletter</title>
 </head>
 <body>
 <h1>Bestilling av kinobilletter</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form class="form">
+                <div class="form-group">
+                    <label for="film"> Velg film:</label>
+                        <select id="film" class="form-control" onchange="velg();">
+                            <option>Velg film her</option>
+                            <option>Black Widow</option>
+                            <option>Avengers Endgame</option>
+                            <option>Scarlet Witch</option>
+                        </select>
+                </div>
 
-<p>Velg film:
-    <select id="film" onchange="velg();">
-        <option>Velg film her</option>
-        <option>Black Widow</option>
-        <option>Avengers Endgame</option>
-        <option>Scarlet Witch</option>
-    </select>
-</p>
+                <div class="form-group">
+                    <label for="antall">Antall:</label>
+                    <input type="number" class="form-control" id="antall" min="1">
+                </div>
 
-<p>Antall <input type="number" id="antall" min="1"></p>
+                <div class="form-group">
+                    <label for="fornavn">Fornavn:</label>
+                    <input type="text" class="form-control" id="fornavn"/>
+                </div>
 
-<table>
-    <tr><td>Fornavn</td><td><input type="text" id="fornavn"/></td></tr>
-    <tr><td>Etternavn</td><td><input type="text" id="etternavn"/></td></tr>
-    <tr><td>Telefonnr</td><td><input type="tel" id="telefonnr"/></td></tr>
-    <tr><td>Email</td><td><input type="email" id="email" autocomplete="email"/></td></tr>
-    <tr><td><button onclick="kjopBilletter()">Kjøp billetter</button></td></tr>
-</table>
+                <div class="form-group">
+                    <label for="etternavn">Etternavn:</label>
+                    <input type="text" class="form-control" id="etternavn"/>
+                </div>
 
-<h2>Alle billetter</h2>
+                <div class="form-group">
+                    <label for="telefonnr">Tlf:</label>
+                    <input type="tel" class="form-control" id="telefonnr"/>
+                </div>
 
-<button onclick="slettBilletter()">Slett alle billettene</button>
-<div id="billettRegister"></div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" autocomplete="email"/>
+                </div>
+            </form>
+
+            <button class="btn btn-primary" onclick="kjopBilletter()">Kjøp billetter</button>
+        </div>
+
+        <div class="col-md-8">
+        <h2>Alle billetter</h2>
+            <div id="billettRegister" class="table-responsive"></div>
+            <button class="btn btn-danger" onclick="slettBilletter()">Slett alle billettene</button>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
